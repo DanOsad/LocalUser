@@ -110,12 +110,6 @@ function runApp(){
   addUser(createUserFromFormData())
 }
 
-// function displayUser(){
-//   let node = '$4300'
-//   let para = document.createElement('td').innerHTML = `${node}`
-//   document.getElementById('#value').append(para)
-// }
-
 function genTable(){
   let currentDBState = fetchDB()
   let users = currentDBState.users
