@@ -60,18 +60,18 @@ function retrieveFromDOM(elementID){
   return document.querySelector(`#${elementID}`).value
 }
 
+function verifyRadioButtonSelection(elementID){
+  // RETURNS TRUE IF RADIO BUTTON IS CHECKED, FALSE OTHERWISE
+  return document.querySelector(`#${elementID}`).checked
+}
+
 function createUserFromFormData(){
   // COLLECTS FORMDATA AND RETURNS USEROBJECT
   let userNameOne = retrieveFromDOM("firstName")
   let userNameTwo = retrieveFromDOM("secondName")
   let eventDate = retrieveFromDOM("eventDate")
   let packagePrice = retrieveFromDOM("packagePrice")
-  // let eshoot = retrieveFromDOM('eshoot')
-  let eshoot = function(){
-    return retrieveFromDOM("true").checked ? retrieveFromDOM("true").value
-         : retrieveFromDOM("true").checked ? retrieveFromDOM("false").value
-         : retrieveFromDOM("false").value
-  }
+  let eshoot = verifyRadioButtonSelection('eshootTrue')
   return new createUser(userNameOne, userNameTwo, eventDate, packagePrice, eshoot)
 }
 
