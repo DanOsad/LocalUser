@@ -1,8 +1,11 @@
+// RUNS EVENT LISTENERS
+eventListeners()
+
 function eventListeners(){
   // EVENT LISTENERS
   document.querySelector('#addUserButton').addEventListener('click', runApp)
   document.querySelector('#clearButton').addEventListener('click', clearDB)
-  document.querySelector('#tableGen').addEventListener('click', generate_table)
+  document.querySelector('#tableGen').addEventListener('click',genTable)
 }
 
 let initialDBState = {
@@ -59,7 +62,6 @@ function retrieveFromDOM(elementID){
 
 function createUserFromFormData(){
   // COLLECTS FORMDATA AND RETURNS USEROBJECT
-  // let userNameOne = document.querySelector("#firstName").value
   let userNameOne = retrieveFromDOM("firstName")
   let userNameTwo = retrieveFromDOM("secondName")
   let eventDate = retrieveFromDOM("eventDate")
@@ -77,6 +79,10 @@ function addUser(userObject){
   // CREATES USER FROM A NEW *createUser* OBJECT
   let currentDBState = fetchDB()
   let userID = Number(currentDBState.userCount)+1
+  // let userID = function(){
+  //   return currentDBState.userCount == 0 ? 1
+  //   : currentDBState.userCount
+  // }
   currentDBState.users[`${userID}`] = userObject
   setDB(incrementUserCount(currentDBState))
 }
@@ -110,43 +116,29 @@ function runApp(){
 //   document.getElementById('#value').append(para)
 // }
 
-function generate_table() {
-  // get the reference for the body
-  var body = document.getElementById("userListCol")
-
-  // creates a <table> element and a <tbody> element
-  var tbl = document.createElement("table");
-  var tblBody = document.createElement("tbody");
-
-  // creating all cells
-  for (var i = 0; i < 2; i++) {
-    // creates a table row
-    var row = document.createElement("tr");
-
-    for (var j = 0; j < 2; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-      var cell = document.createElement("td");
-      var cellText = document.createTextNode("cell in row "+i+", column "+j);
-      cell.appendChild(cellText);
-      row.appendChild(cell);
-    }
-
-    // add the row to the end of the table body
-    tblBody.appendChild(row);
+function genTable(){
+  let currentDBState = fetchDB()
+  let users = currentDBState.users
+  for (i=1; i<users.length; i++){
+    let newElement = document.createElement('tr')
+    let tableRowContent = `
+                            <td>${Number(i)}</td>
+                            <td>${users[i].userNameOne}</td>
+                            <td>${users[i].userNameTwo}</td>
+                            <td>${users[i].eventDate}</td>
+                            <td>${users[i].eshoot}</td>
+                            <td>${users[i].packagePrice}</td>
+                          `
+    newElement.innerHTML = tableRowContent
+    document.getElementById('table').appendChild(newElement)
+    setTableToVisible()
   }
-
-  // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
-  // appends <table> into <body>
-  body.appendChild(tbl);
-  // sets the border attribute of tbl to 2;
-  tbl.setAttribute("border", "2");
 }
 
-// RUNS EVENT LISTENERS
-eventListeners()
+function setTableToVisible(){
+  let tableID = document.getElementById('tableData')
+  tableID.style.display = 'block'
+}
 
 /* TESTS */
 

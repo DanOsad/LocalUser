@@ -23,3 +23,9 @@ img{
 #userList{
   display: none;
 }
+
+#tableData{
+  /* display: flex;
+  justify-content: center; */
+  display: none;
+}
