@@ -111,10 +111,12 @@ function runApp(){
 }
 
 function genTable(){
+  clearTable()
   let currentDBState = fetchDB()
   let users = currentDBState.users
   for (i=1; i<users.length; i++){
     let newElement = document.createElement('tr')
+    newElement.setAttribute('class', 'userTableRow')
     let tableRowContent = `
                             <td>${Number(i)}</td>
                             <td>${users[i].userNameOne}</td>
@@ -132,6 +134,17 @@ function genTable(){
 function setTableToVisible(){
   let tableID = document.getElementById('tableData')
   tableID.style.display = 'block'
+}
+
+function clearTable(){
+  removeChildren('.userTableRow', document)
+}
+
+function removeChildren(cssSelector, parentNode){
+  var elements = parentNode.querySelectorAll(cssSelector)
+  let fragment = document.createDocumentFragment()
+  fragment.textContent=' '
+  fragment.firstChild.replaceWith(...elements)
 }
 
 /* TESTS */
