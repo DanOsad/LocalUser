@@ -16,6 +16,14 @@ img{
   margin: 0 auto;
 }
 
+/* VARIABLES */
+:root{
+  --main-bg-color: #41B3A3;
+  --main-text-color: #ffffff;
+  --button-color: #E27D60;
+  --accent-color: #C38D9E;
+  --main-font: 'Bebas Neue', cursive;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -30,6 +38,8 @@ body{
   background: rgba(128,128,128,1);
   min-height: 100%;
   display: flex;
+  color: var(--main-text-color);
+  font-family: var(--main-font);
 }
 
 html, body{
@@ -42,16 +52,18 @@ html, body{
   min-height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background: var(--main-bg-color);
 }
 
 #header{
-  width: 100%;
+  width: 80%;
   height: 10%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: yellow;
+  border-bottom: 3px dotted var(--accent-color);
 }
 
 header{
@@ -68,8 +80,7 @@ header nav ul{
 #header li>a{
   text-decoration: none;
   font-size: 2rem;
-  color: black;
-
+  color: var(--button-color);
 }
 
 #mainApp{
@@ -81,30 +92,76 @@ header nav ul{
   flex-grow: 1;
 }
 
-#addRemoveHalfPage{
-  width: 50%;
-  background: blue;
+h1{
+  font-size: 3rem;
+  margin: 2rem 0;
 }
 
+#addRemoveHalfPage,
 #tableHalfPage{
-  width: 50%;
-  background: red;;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+#addRemoveHalfPage>form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* #tableHalfPage{
+
+} */
 
 #userList{
   display: none;
 }
 
 #tableData{
-  /* display: flex;
-  justify-content: center; */
+  /* display: flex; */
+  justify-content: center;
   display: none;
 }
 
+thead th{
+  font-size: 3rem;
+}
+
+#dbButtons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 button{
-  font-size: 1.4rem;
-  background: rgba(128,128,128,.2);
+  font-size: 2rem;
+  background: var(--button-color);
   border-radius: 10px;
-  margin: .5rem;
+  margin: 1rem 0;
   padding: .4rem;
+  border: none;
+  color: var(--main-text-color)
+}
+
+.wrapper {
+  list-style-type: none;
+  padding: 0;
+  border-radius: 3px;
+}
+.form-row {
+  padding: .5em;
+}
+.form-row > label {
+  font-size: 1.5rem;
+  padding: .5em 1em .5em 0;
+}
+.form-row > input{
+  padding: .5em;
+  font-size: 1rem;
 }
