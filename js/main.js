@@ -133,7 +133,7 @@ function genTable(){
 
 function setTableToVisible(){
   let tableID = document.getElementById('tableData')
-  tableID.style.display = 'block'
+  tableID.style.display = 'flex'
 }
 
 function clearTable(){

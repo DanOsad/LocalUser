@@ -5,7 +5,6 @@
 /* Box Model Hack */
 *{
   box-sizing: border-box;
-  border: 1px solid black;
 }
 
 /******************************************
@@ -122,13 +121,62 @@ h1{
 }
 
 #tableData{
-  /* display: flex; */
-  justify-content: center;
-  display: none;
+  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
 }
+
+/* #table{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+} */
+
+#titleRow{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+
+th{
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  /* padding: 1rem 0; */
+}
+
+/* th+th{
+  border-left: 1px dotted black;
+  line-height: .2rem;
+} */
 
 thead th{
   font-size: 3rem;
+  color: white;
+}
+
+.userTableRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-left: 1rem;
+}
+
+td{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 1rem;
+  align-items: flex-start;
+  /* margin: 0 .4rem; */
+  padding: .5rem;
 }
 
 #dbButtons{
