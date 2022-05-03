@@ -4,8 +4,9 @@ eventListeners()
 function eventListeners(){
   // EVENT LISTENERS
   document.querySelector('#addUserButton').addEventListener('click', runApp)
-  document.querySelector('#clearButton').addEventListener('click', clearDB)
   document.querySelector('#tableGen').addEventListener('click',genTable)
+  document.querySelector('#removeUserButton').addEventListener('click',removeUser)
+  document.querySelector('#clearButton').addEventListener('click', clearDB)
 }
 
 let initialDBState = {
@@ -75,16 +76,33 @@ function createUserFromFormData(){
   return new createUser(userNameOne, userNameTwo, eventDate, packagePrice, eshoot)
 }
 
+function clearInputFields(){
+  // CLEARS ALL INPUT FIELDS
+  document.querySelector("secondName").value = ''
+  document.querySelector("firstName").value = ''
+  document.querySelector("eventDate").value = ''
+  document.querySelector("packagePrice").value = ''
+  document.querySelector("removeUser").value = ''
+}
+
 function addUser(userObject){
   // CREATES USER FROM A NEW *createUser* OBJECT
   let currentDBState = fetchDB()
   let userID = Number(currentDBState.userCount)+1
-  // let userID = function(){
-  //   return currentDBState.userCount == 0 ? 1
-  //   : currentDBState.userCount
-  // }
   currentDBState.users[`${userID}`] = userObject
   setDB(incrementUserCount(currentDBState))
+  clearInputFields()
+  genTable()
+}
+
+function removeUser(){
+  // REMOVES USERS FROM LOCAL STORAGE
+  let userID = retrieveFromDOM('removeUser')
+  let currentDBState = fetchDB()
+  currentDBState.users.splice(userID, 1)
+  setDB(currentDBState)
+  genTable()
+  clearInputFields()
 }
 
 function averagePackagePrice(){
@@ -115,6 +133,7 @@ function genTable(){
   let currentDBState = fetchDB()
   let users = currentDBState.users
   for (i=1; i<users.length; i++){
+    if (users[i]!=null){
     let newElement = document.createElement('tr')
     newElement.setAttribute('class', 'userTableRow')
     let tableRowContent = `
@@ -128,6 +147,7 @@ function genTable(){
     newElement.innerHTML = tableRowContent
     document.getElementById('table').appendChild(newElement)
     setTableToVisible()
+    }
   }
 }
 
@@ -138,6 +158,8 @@ function setTableToVisible(){
 
 function clearTable(){
   removeChildren('.userTableRow', document)
+  let tableID = document.getElementById('tableData')
+  tableID.style.display = 'none'
 }
 
 function removeChildren(cssSelector, parentNode){
@@ -163,6 +185,7 @@ const testUserData = [
 ]
 
 function testBuildDB(userData){
+  initLocalDatabase()
   for (i=0; i<userData.length; i++){
     let newUser = new createUser(
       userData[i][0],
