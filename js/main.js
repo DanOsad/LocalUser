@@ -91,7 +91,7 @@ function addUser(userObject){
   let userID = Number(currentDBState.userCount)+1
   currentDBState.users[`${userID}`] = userObject
   setDB(incrementUserCount(currentDBState))
-  clearInputFields()
+  // clearInputFields()
   genTable()
 }
 
@@ -102,7 +102,7 @@ function removeUser(){
   currentDBState.users.splice(userID, 1)
   setDB(currentDBState)
   genTable()
-  clearInputFields()
+  // clearInputFields()
 }
 
 function averagePackagePrice(){
@@ -158,8 +158,8 @@ function setTableToVisible(){
 
 function clearTable(){
   removeChildren('.userTableRow', document)
-  let tableID = document.getElementById('tableData')
-  tableID.style.display = 'none'
+  // let rows = document.getElementsByClassName('userTableRow')
+  // rows.forEach(e=> e.style.display = 'none')
 }
 
 function removeChildren(cssSelector, parentNode){
